@@ -1,6 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+
+:root{
+    --font-base: 'Cormorant Upright', serif;
+    --color-black: #0C0C0C;
+    --color-golden: #DCCA87;
+    --color-crimson: #F5EFDB;
+
+}
 .tree {
-    background-color: #efefef;
+    background-color: var(--color-black);
     height: 100%;
-    padding: 10px;
-    font-family: monospace
+    padding: 2rem 0.5rem;
+    font-family: var(--font-base);
+    font-size: 23px;
+    color: #F5EFDB;
+}
+.tree ul {
+    list-style: none;
+}
+
+.tree li:hover{
+    
+    color: var(--color-golden);
 }
