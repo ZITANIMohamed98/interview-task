@@ -6,6 +6,7 @@
     --color-black: #0C0C0C;
     --color-golden: #DCCA87;
     --color-crimson: #F5EFDB;
+    --color-gray: #545454;
 
 }
 .tree {
@@ -15,12 +16,55 @@
     font-family: var(--font-base);
     font-size: 23px;
     color: #F5EFDB;
+    display: flex;
+    flex-direction: column;
+    
 }
 .tree ul {
     list-style: none;
 }
 
+input {
+    border:solid var(--color-gray);
+    color: var(--color-crimson);
+    background: var(--color-black);
+    
+}
+
+.node {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.node button{
+    margin: 0.3rem 1rem;
+    background: var(--color-black);
+    border: none;
+}
 .tree li:hover{
     
     color: var(--color-golden);
+}
+
+.menu{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.menu select{
+    background: inherit;
+    color: inherit;
+    border: none;
+    align-items: center;
+}
+
+
+.menu select:hover{
+    color: var(--color-golden);
+}
+
+option {
+    background: var(--color-black);
 }
