@@ -1,1 +1,14 @@
-{}
+{
+    "items":[
+        {"name":"root",
+        "subitems":[
+            {"name":"ant","subitems":[]},
+            {"name":"bear",
+                    "subitems":[{"name":"cat","subitems":[]},
+                                 {"name":"dog","subitems":[{"name":"elephant"}]}
+                ]},
+            {"name":"frog","subitems":[]}
+        
+    ]}
+]
+}
