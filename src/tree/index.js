@@ -13,11 +13,11 @@ const TreeContent = () => {
     const [value, setvalue] = useState("");
     const [Item, setItem] = useState(0);
 
-    const postApi = () => {
-        axios.post('https://api.jsonbin.io/v3/b/64e3be2e9d312622a394a081',currData)
-        .then((response) => {
-        setCurrData(response.data.record);})
-    }
+    // const postApi = () => {
+    //     axios.post('https://api.jsonbin.io/v3/b/64e3be2e9d312622a394a081',currData)
+    //     .then((response) => {
+    //     console.log(response.data.record);})
+    // }
     const addItem = (value,Item) => {
         let newArry = { ...currData }; // Create a copy of the data
         if(Item.length===1){
@@ -32,7 +32,7 @@ const TreeContent = () => {
             newArry.items[Item[0]].subitems[Item[1]].subitems[Item[2]].subitems[newArry.items[Item[0]].subitems[Item[1]].subitems[Item[2]].subitems.length-1].name = value;
         }
         setCurrData(newArry);
-        postApi();
+        // postApi();
     };
 
     const deleteItem = (event) => {
@@ -46,7 +46,7 @@ const TreeContent = () => {
         else if(itemToDelete.length===4){
                 newArry.items[itemToDelete[0]].subitems[itemToDelete[1]].subitems[itemToDelete[2]].subitems.splice(itemToDelete[3],1);    }
         setCurrData(newArry);
-        postApi();
+        // postApi();
     }
 
     const handleChange = (event) => {
@@ -64,9 +64,9 @@ const TreeContent = () => {
       };
 
     useEffect(() => {
-        axios.get('https://api.jsonbin.io/v3/b/64e3be2e9d312622a394a081')
-        .then((response) => {
-        setCurrData(response.data.record);})
+        // axios.get('https://api.jsonbin.io/v3/b/64e3be2e9d312622a394a081')
+        // .then((response) => {
+        // setCurrData(response.data.record);})
     }, [currData]); // Add currData as a dependency
 
     return (
