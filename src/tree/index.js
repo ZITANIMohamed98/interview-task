@@ -56,7 +56,7 @@ const TreeContent = () => {
     
       const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-          // 👇 Get input value
+          
           addItem(value,Item);
           // Clear input field after adding an item to treeview
           event.target.value="";
