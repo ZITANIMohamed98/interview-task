@@ -9,15 +9,17 @@ axios.defaults.headers['X-ACCESS-KEY'] = '$2b$10$1/cOdqbhtM65Fc4reBh/NuXL4Yg1nrt
 
 
 const TreeContent = () => {
-    const [currData, setCurrData] = useState(data);
+    const [currData, setCurrData] = useState({items:[]});
     const [value, setvalue] = useState("");
     const [Item, setItem] = useState(0);
+    const [FirstLoad, setFirstLoad] = useState(true)
 
-    // const postApi = () => {
-    //     axios.post('https://api.jsonbin.io/v3/b/64e3be2e9d312622a394a081',currData)
-    //     .then((response) => {
-    //     console.log(response.data.record);})
-    // }
+    const postApi = (newArry) => {
+        axios.put('https://api.jsonbin.io/v3/b/64e3be2e9d312622a394a081',newArry)
+        .then((response) => {
+        console.log(response.data.record);})
+        setCurrData(newArry);
+    }
     const addItem = (value,Item) => {
         let newArry = { ...currData }; // Create a copy of the data
         if(Item.length===1){
@@ -31,8 +33,9 @@ const TreeContent = () => {
             newArry.items[Item[0]].subitems[Item[1]].subitems[Item[2]].subitems.push({ "name": "", "subitems": [] });
             newArry.items[Item[0]].subitems[Item[1]].subitems[Item[2]].subitems[newArry.items[Item[0]].subitems[Item[1]].subitems[Item[2]].subitems.length-1].name = value;
         }
-        setCurrData(newArry);
-        // postApi();
+        
+        postApi(newArry);
+        
     };
 
     const deleteItem = (event) => {
@@ -45,8 +48,9 @@ const TreeContent = () => {
             newArry.items[itemToDelete[0]].subitems[itemToDelete[1]].subitems.splice(itemToDelete[2],1);    }
         else if(itemToDelete.length===4){
                 newArry.items[itemToDelete[0]].subitems[itemToDelete[1]].subitems[itemToDelete[2]].subitems.splice(itemToDelete[3],1);    }
-        setCurrData(newArry);
-        // postApi();
+        postApi(newArry);
+        
+        
     }
 
     const handleChange = (event) => {
@@ -64,9 +68,12 @@ const TreeContent = () => {
       };
 
     useEffect(() => {
-        // axios.get('https://api.jsonbin.io/v3/b/64e3be2e9d312622a394a081')
-        // .then((response) => {
-        // setCurrData(response.data.record);})
+        if(FirstLoad){
+            axios.get('https://api.jsonbin.io/v3/b/64e3be2e9d312622a394a081')
+            .then((response) => {
+            setCurrData(response.data.record);})
+            setFirstLoad(false);
+        }
     }, [currData]); // Add currData as a dependency
 
     return (
