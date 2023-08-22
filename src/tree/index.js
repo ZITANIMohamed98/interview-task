@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './index.css'
 import axios from 'axios'
-import data from './data.json'
+// import data from './data.json'
 
 axios.defaults.headers['X-ACCESS-KEY'] = '$2b$10$1/cOdqbhtM65Fc4reBh/NuXL4Yg1nrtaP4SYViPlX8q2LTdUtNA8a';
 
@@ -74,13 +74,13 @@ const TreeContent = () => {
             setCurrData(response.data.record);})
             setFirstLoad(false);
         }
-    }, [currData]); // Add currData as a dependency
+    }, [currData,FirstLoad]); // Add currData as a dependency
 
     return (
         <ul className="main">
             
             {currData.items.map((item, i) => (
-                <React.Fragment key={i}>
+                <React.Fragment>
                     <li>{(i + 1) + ". " + item.name}</li>
                     <input
                         type="text"
@@ -89,7 +89,7 @@ const TreeContent = () => {
                         onKeyDown={handleKeyDown} />
                     <ul>
                         {item.subitems.map((subitem, j) => (
-                            <React.Fragment key={j}>
+                            <React.Fragment>
                                 <div className='node'><li >{(i + 1) + "." + (j + 1) + ". " + subitem.name}</li><button id={i + '_' + j} onClick={deleteItem}>❌</button></div>
                                 <input
                                     type="text"
@@ -98,7 +98,7 @@ const TreeContent = () => {
                                     onKeyDown={handleKeyDown} />
                                 <ul>
                                     {subitem.subitems.map((subsubitem, k) => (
-                                        <React.Fragment key={k}>
+                                        <React.Fragment>
                                             <div className='node'><li >{(i + 1) + "." + (j + 1) + "." + (k + 1) + ". " + subsubitem.name}</li><button id={i + '_' + j + '_' + k} onClick={deleteItem}>❌</button></div>
                                             <input
                                                 type="text"
@@ -127,6 +127,7 @@ const Tree = () => {
             <div className="tree">
                 <div className='menu'>
                     <select
+                    id='menu-sort'
                     onChange={() => {}}
                     value=""
                     >
